@@ -25,16 +25,14 @@ A basic PHP project setup with Docker, using Nginx as the web server, PHP-FPM fo
 
 The project includes the following services:
 
-- **Nginx**: Web server running on port 8080
-- **PHP-FPM**: PHP processor running on port 9090
-- **MySQL**: Database server running on port 3406
+- **Nginx**: Web server
+- **PHP-FPM**: PHP processor
+- **MySQL**: Database server
 
 ## Database Configuration
 
 - Database Name: symfony
 - Username: symfony
-- Password: symfony
-- Root Password: root
 
 ## Getting Started
 
