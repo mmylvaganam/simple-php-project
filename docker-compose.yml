@@ -1,0 +1,45 @@
+services:
+  php:
+    build:
+      context: ./docker/php
+    container_name: php-container
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "9090:9000"
+    networks:
+      - symfony-net
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: symfony
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+    ports:
+      - "3406:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - symfony-net
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+    networks:
+      - symfony-net
+
+networks:
+  symfony-net:
+
+volumes:
+  mysql-data:
